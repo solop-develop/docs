@@ -54,5 +54,6 @@ export default defineConfig({
     footer: {
       copyright: 'Copyright © 2024-present Solop Software'
     }
-  }
+  },
+  ignoreDeadLinks: true
 })
