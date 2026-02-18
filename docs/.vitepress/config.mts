@@ -44,6 +44,7 @@ export default defineConfig({
           { text: 'Gestión Financiera', link: '/financial-management' },
           { text: 'Gestión de Activos', link: '/asset-management' },
           { text: 'Dashboards', link: '/dashboards' },
+          { text: 'Integración Mercado Libre', link: '/mercado-libre' },
           { text: 'Preguntas Frecuentes', link: '/frequently-asked-questions' },
           { text: 'Verticales Oficiales de Solop ERP', link: '/verticals' },
         ]
