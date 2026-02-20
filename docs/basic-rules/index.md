@@ -13,6 +13,8 @@ El presente material se encuentra dirigido a cada uno de los usuarios de Solop E
 - [Componentes](icons-interface)
 - [Notificaciones](notifications)
 - [Flujos de Trabajo](workflows)
+- [Personalización de Reportes](report-customization)
+- [Exploración de Reportes y Gráficos](reports-and-charts)
 
 ### Carga de Datos
 
