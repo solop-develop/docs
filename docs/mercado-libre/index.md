@@ -33,6 +33,10 @@ Casos típicos:
 - [Pre-Requisitos de Publicación](publication-prerequisites)
 - [Publicación de Productos](product-publication)
 
+## Importación de Órdenes
+
+- [Notificaciones de Importación y Envío](order-import-notifications)
+
 ## Solución de Problemas
 
 - [Manejo de Errores al Publicar](error-handling)
