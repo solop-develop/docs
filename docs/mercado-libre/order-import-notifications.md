@@ -5,8 +5,8 @@ star: 9
 sticky: 9
 article: false
 prev:
-  text: 'Publicación de Producto en Mercado Libre'
-  link: '/mercado-libre/product-publication'
+  text: 'Configuración de Notificaciones'
+  link: '/mercado-libre/notification-configuration'
 next:
   text: 'Manejo de Errores al Publicar en Mercado Libre'
   link: '/mercado-libre/error-handling'
