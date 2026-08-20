@@ -35,6 +35,7 @@ Casos típicos:
 
 ## Importación de Órdenes
 
+- [Configuración de Notificaciones](notification-configuration)
 - [Notificaciones de Importación y Envío](order-import-notifications)
 
 ## Solución de Problemas
