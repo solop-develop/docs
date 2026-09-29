@@ -8,6 +8,8 @@ article: false
 
 El presente material elaborado por **Solop ERP** pretende ofrecerle una explicación eficiente a nuestros clientes del procedimiento a seguir para realizar y obtener un resultado exitoso al momento de realizar los procedimientos correspondientes a nómina en Solop ERP.
 
+- Conceptos de Nómina
+  - Configuración de Conceptos con Fórmulas (Expresiones)
 - Proceso de Nómina
   - Registro de Nómina
 - Novedades de Nómina
@@ -16,6 +18,65 @@ El presente material elaborado por **Solop ERP** pretende ofrecerle una explicac
   - Registro de Pagos de Nómina
 - Reporte de Nómina
   - Generar Reporte de Nómina
+
+## Conceptos de Nómina
+
+Los conceptos de nómina son los distintos rubros que componen la liquidación de un empleado (salario base, bonos, horas extra, deducciones, etc.). Cada concepto define, entre otras cosas, **cómo se calcula su valor** cuando se procesa la nómina.
+
+### Configuración de Conceptos con Fórmulas (Expresiones)
+
+Solop ERP permite definir el cálculo de un concepto de nómina mediante una **fórmula (expresión)** escrita directamente en la configuración del concepto, sin necesidad de crear una regla de programación aparte para cada cálculo. Esto agiliza la puesta en marcha y el mantenimiento de conceptos con cálculos simples o moderadamente complejos.
+
+Ubique y seleccione en el menú de Solop ERP, la carpeta **Gestión de Recursos Humanos y Nómina**, luego seleccione la carpeta **Nómina**, por último seleccione la ventana **Catálogo de Conceptos de Nómina**.
+
+En la pestaña **Atributos del Concepto** del concepto que desea configurar, complete los siguientes campos:
+
+- **Tipo de Cálculo**  
+  Defina si el concepto se calcula mediante una **Expresión** (fórmula) o mediante un **Script** (código con lógica más avanzada). Si el concepto no utiliza ninguno de estos dos tipos, continúa calculándose con el mecanismo tradicional de reglas de nómina, sin ningún cambio en su comportamiento.
+
+- **Expresión**  
+  Disponible cuando el **Tipo de Cálculo** es `Expresión`. Aquí se escribe la fórmula que determina el valor del concepto. La fórmula puede combinar operaciones matemáticas, condiciones y funciones predefinidas.
+
+- **Motor de Script**, **Código de Script** y **Tiempo Límite**  
+  Disponibles cuando el **Tipo de Cálculo** es `Script`, para los casos en que se requiera una lógica de cálculo más avanzada que una fórmula simple.
+
+#### Funciones disponibles en las expresiones
+
+| Función | Qué hace |
+|---|---|
+| `ROUND(n, decimales)` | Redondea un número a la cantidad de decimales indicada |
+| `ABS(n)` | Valor absoluto |
+| `FLOOR(n)` / `CEIL(n)` | Redondeo hacia abajo / hacia arriba |
+| `MIN(a, b)` / `MAX(a, b)` | Menor / mayor de dos valores |
+| `IF(condición, sí, no)` | Condicional: devuelve un valor u otro según se cumpla la condición |
+| `COALESCE(a, b, …)` / `NVL(valor, por_defecto)` | Devuelven el primer valor disponible cuando uno puede estar vacío |
+| `UPPER(texto)` / `LOWER(texto)` / `TRIM(texto)` | Transformaciones de texto |
+| `CONCAT(a, b, …)` | Concatena valores como texto |
+| `LENGTH(texto)` | Longitud de un texto |
+| `DATEDIFF(fecha1, fecha2)` | Diferencia en días entre dos fechas |
+| `TONUMBER(texto)` / `TOSTRING(valor)` | Conversión entre texto y número |
+
+Además de estas funciones, la expresión puede usar como variables:
+
+- Datos del período que se está calculando (por ejemplo, la cantidad de días del período).
+- El **código de otro concepto de nómina** ya calculado dentro del mismo proceso, para construir cálculos encadenados (un concepto que usa el resultado de otro).
+
+### Ejemplo de uso
+
+Un concepto llamado **Bono por Asistencia** puede configurarse con:
+
+- **Tipo de Cálculo:** `Expresión`
+- **Expresión:** `IF(DIAS_TRABAJADOS >= 20, MONTO_BASE * 0.10, 0)`
+
+Con esta fórmula, el sistema paga el 10% del concepto **Monto Base** únicamente cuando el empleado trabajó 20 días o más en el período; de lo contrario, el concepto no genera pago.
+
+De la misma forma, se pueden encadenar varios conceptos simples para construir un cálculo compuesto, por ejemplo: un concepto que suma las horas trabajadas del período, otro que calcula el valor de la hora a partir del salario del empleado, y un tercer concepto que multiplica ambos resultados para obtener el salario del período.
+
+### Consideraciones importantes
+
+- Los conceptos que ya utilizaban una regla de nómina tradicional (sin **Tipo de Cálculo** definido) siguen funcionando exactamente igual; esta funcionalidad es un mecanismo adicional, no un reemplazo obligatorio.
+- Use **Expresión** para fórmulas y condiciones simples. Reserve **Script** para lógica de cálculo que no pueda resolverse con una fórmula (por ejemplo, escalas o recorridos más complejos).
+- Verifique que los nombres de variables y de conceptos usados en la expresión coincidan exactamente con los códigos configurados en el sistema; un nombre incorrecto no producirá el cálculo esperado.
 
 ## Proceso de Nómina
 
