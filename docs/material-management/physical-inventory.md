@@ -56,7 +56,9 @@ Pestaña donde se registra una línea por cada producto que requiere ajuste:
 - **Completar**
   Procesa el documento y genera los movimientos de inventario necesarios para llevar la cantidad registrada en el sistema hasta la cantidad contada. Si la cantidad contada es menor, se genera un ajuste negativo; si es mayor, se genera un ajuste positivo.
 
-## Flujo del proceso
+## Registro Manual de Inventario Físico
+
+Recomendado cuando se ajustan pocos productos. Para ajustes masivos, vea [Importación de Inventario Físico desde un Excel](#importacion-de-inventario-fisico-desde-un-excel).
 
 ### 1. Crear el encabezado del documento
 
@@ -80,6 +82,64 @@ Regresar a la pestaña principal **Conteo de Inventario** y seleccionar la acci�
 ### 4. Verificar el ajuste
 
 Para confirmar que el inventario quedó correctamente actualizado, ejecutar el reporte **Informe de Inventario Valorado** filtrando por la fecha en que se realizó el ajuste. El reporte mostrará las cantidades en existencia actualizadas para cada producto ajustado.
+
+## Importación de Inventario Físico desde un Excel
+
+Cuando se deben ajustar muchos productos, el inventario físico se puede importar desde un archivo Excel mediante el **Cargador de Archivos**. El procedimiento es el mismo en las instancias ZK y VUE; solo cambia la interfaz.
+
+### Datos requeridos
+
+- **Formato de importación:** *Importar Inventario*. Se instala con el archivo **ImportadorInventario.zip** (exportado por PackOut).
+- **Archivo Excel** con las siguientes columnas, en este orden:
+
+| # | Columna | Detalle |
+|---|---------|---------|
+| 1 | ID Organización | ID de la organización donde se importa |
+| 2 | Código Almacén | Código del almacén |
+| 3 | Fecha Movimiento | Formato `dd/MM/yyyy` |
+| 4 | Código Ubicación | Código de la ubicación dentro del almacén |
+| 5 | Código Producto | Código del producto |
+| 6 | Cantidad Contada | Cantidad real contada |
+
+Como guía se puede usar el archivo de ejemplo **Inventario.xlsx**:
+
+- Hoja **Ejemplo-Inventario**: incluye la fila de encabezado que indica a qué corresponde cada columna.
+- Hoja **Para-Subir**: sin fila de encabezado, lista para importar.
+
+::: warning
+El archivo que se sube al cargador **no debe incluir la fila de encabezado**.
+:::
+
+### Procedimiento
+
+1. **Preparar el archivo.** Ordenar la información en el Excel con el orden de columnas indicado, tomando como guía **Inventario.xlsx**.
+2. **Validar la ventana Importar Inventario.** Debe estar vacía. Si contiene datos, eliminarlos con el proceso **Borrar Importación**, seleccionando la tabla **I_Inventory_Importar Inventario**.
+3. **Subir el archivo** con el **Cargador de Archivos**: seleccionar el archivo, el set de caracteres y el formato de importación **Importar Inventario**.
+   - En Linux utilizar **ISO-8859-9**.
+   - En Windows utilizar **UTF-8**.
+4. **Validar la carga.** En la ventana **Importar Inventario** deben aparecer todas las líneas que indicó el cargador, es decir, la misma cantidad de filas del Excel (sin el encabezado). Verificar también que la información haya llegado correctamente.
+5. **Ejecutar el proceso.** Seleccionar el icono **Proceso** (engranaje) y ejecutar **Importa Inventario** con los parámetros:
+   - **Compañía:** por defecto, la compañía con la que se inició sesión
+   - **Organización:** organización donde se está importando
+   - **Ubicación:** ubicación donde se está importando
+   - **Fecha de Movimiento:** por defecto, la fecha en que se ejecuta el proceso
+6. **Revisar y completar.** El inventario creado queda registrado en el campo **Inventario Físico** de la ventana **Importar Inventario**. Abrirlo, validar los datos y ejecutar la acción **Completar**.
+
+::: tip
+El proceso de importación genera un Inventario Físico **por cada almacén** incluido en el archivo. Antes de completar cada documento, valide en la ventana **Inventario Físico** que los datos sean correctos.
+:::
+
+### Importación en ZK
+
+Seguir el procedimiento anterior desde la interfaz ZK.
+
+- Video: [Importación de inventario físico en ZK desde Excel](https://www.loom.com/share/dbd61416e5394712912341a7c30c8d46)
+
+### Importación en VUE
+
+Seguir el procedimiento anterior desde la interfaz VUE.
+
+- Video: [Importación de inventario en VUE desde Excel](https://www.loom.com/share/283cf3330fc64a668bdf3508c5b92636)
 
 ## Consideraciones importantes
 
