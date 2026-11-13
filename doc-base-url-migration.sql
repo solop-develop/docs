@@ -1160,3 +1160,9 @@ UPDATE AD_Menu SET DocBaseURL = '/dictionary/material-management/material-rules/
 
 -- Socio del Negocio (AD_Menu)
 -- UPDATE AD_Menu SET DocBaseURL = '/dictionary/customer-relationship-management/business-partner-credit-limit-control' WHERE AD_Menu_ID = 110;
+
+-- === Gestión Humana / Control de Asistencia ===
+-- Nota: Gestión de Asistencias es un formulario (AD_Form 53103); AD_Form no tiene DocBaseURL, se actualiza solo el menú.
+
+-- Gestión de Asistencias (AD_Menu)
+UPDATE AD_Menu SET DocBaseURL = '/dictionary/human-management/time-attendance/attendance-management' WHERE AD_Menu_ID = 55162;
