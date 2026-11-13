@@ -79,7 +79,7 @@ Detalle de cada combinación vinculada por la asignación. Una misma asignación
 El detalle de la asignación admite distintas combinaciones entre documentos:
 
 - Factura – Pago/Cobro
-- Factura – Nota de Crédito
+- Factura – Nota de Crédito (se genera automáticamente al completar una nota de crédito que tenga la factura cargada en la pestaña **Facturas a Asignar**; ver [Nota de crédito con asignación automática](../../sales-management/sales-invoices/invoice-customer#nota-de-credito-con-asignacion-automatica))
 - Factura – Cargo
 - Pago – Cargo
 
@@ -112,6 +112,7 @@ Es posible llegar a una asignación específica navegando desde:
 - **Documentos por Cobrar** → pestaña **Facturas Pagadas**
 - **Recibo de Pago** → pestaña **Documentos Asignados**
 - **Recibo de Cobro** → pestaña **Documentos Asignados**
+- **Nota de crédito** (en Documentos por Cobrar) → **Acercador** (Zoom Across) → **Consulta de Asignación**
 
 En todos los casos, hacer clic sobre el documento vinculado abre directamente el registro de asignación correspondiente.
 
@@ -159,6 +160,10 @@ Sí. Una factura de saldo inicial se asigna igual que cualquier otra factura, po
 
 La causa más común es que el **período contable** de la asignación esté cerrado. En ese caso, usar la acción **Reversar**, que deja registro del reverso y no requiere borrar la asignación original. Si el período está abierto y el error persiste, verificar que el rol tenga acceso al proceso.
 
+### Completé una nota de crédito y no aparece ninguna asignación contra la factura. ¿Qué pasó?
+
+La asignación automática de una nota de crédito solo se genera si, antes de completarla, la factura estaba cargada en la pestaña **Facturas a Asignar** con su **Monto a Asignar**. Indicar la factura solo en el campo **Factura Asignada** del encabezado no genera la asignación. En ese caso, cruzar la nota de crédito con la factura de forma manual desde [Asignación de Pagos](./payment-allocation).
+
 ## Consideraciones importantes
 
 - Esta ventana es de **consulta y reversión**; para crear asignaciones nuevas se utiliza el formulario [Asignación de Pagos](./payment-allocation).
@@ -174,3 +179,4 @@ La causa más común es que el **período contable** de la asignación esté cer
 - [Reporte de Asignación de Pago](./allocation-report)
 - [Facturas sin Asignar](./unallocated-invoices)
 - [Pagos sin Asignar](./unallocated-payments)
+- [Documentos por Cobrar](../../sales-management/sales-invoices/invoice-customer)
