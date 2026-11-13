@@ -57,3 +57,23 @@ El proceso genera mensaje restrictivo si:
 * El Socio del Negocio no tiene definida una localización y se marcó el check de "Crear Contrato"
 
 * El Socio del Negocio no tiene definida el agente comercial y se marcó el check de "Crear Contrato"
+## Gestión de Asistencias
+
+### ¿Qué significa cada estado de la columna Estado en Gestión de Asistencias y en función de qué cambia?
+
+Cada fila del formulario **Gestión de Asistencias** es un turno planificado de un trabajador. La columna **Estado** resume cómo va ese turno comparando las marcas de entrada y salida con el horario planificado y la tolerancia configurada (minutos permitidos antes y después de la hora planificada).
+
+Puede mostrar 11 estados: *Próximo a iniciar*, *Pendiente de ingreso*, *Ausencia injustificada*, *Ausencia justificada*, *En turno*, *En turno (entrada temprana)*, *En turno (entrada tarde)*, *A tiempo*, *Tarde*, *Salida anticipada* y *Tiempo Excedido*. El color indica la atención requerida: verde = correcto, gris = informativo, naranja = requiere revisión.
+
+El sistema evalúa en este orden y asigna el primer estado que corresponda:
+
+1. Licencia o permiso aprobado → *Ausencia justificada*.
+2. Sin marca de entrada → *Próximo a iniciar*, *Pendiente de ingreso* o *Ausencia injustificada*, según la hora de consulta.
+3. Con entrada y sin salida → *En turno* (con sus variantes de entrada temprana o tarde) mientras el turno está en curso, o *Tiempo Excedido* si el turno ya terminó.
+4. Con entrada y salida → la salida pesa más que la entrada: *Tiempo Excedido*, *Salida anticipada*, *Tarde* o *A tiempo*.
+
+El estado se recalcula solo a medida que avanza la hora y se registran marcas. La tabla completa con ejemplos está en [Gestión de Asistencias](../../dictionary/human-management/time-attendance/attendance-management).
+
+### ¿Por qué un turno figura "Tiempo Excedido" si el trabajador no marcó la salida?
+
+Porque, cuando hay marca de entrada, no hay marca de salida y el horario planificado ya terminó, el sistema no puede confirmar que el trabajador se retiró a tiempo. Al registrarse o regularizarse la marca de salida, el estado se recalcula según la hora real. Ver [Gestión de Asistencias](../../dictionary/human-management/time-attendance/attendance-management#preguntas-frecuentes).
